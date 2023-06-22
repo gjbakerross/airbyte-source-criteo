@@ -1,0 +1,113 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": true,
+    "properties": {
+      "Total": {
+        "type": "object",
+        "properties": {
+          "AdvertiserCost": {
+            "type": "string"
+          },
+          "Clicks": {
+            "type": "string"
+          },
+          "Displays": {
+            "type": "string"
+          },
+          "Visits": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "AdvertiserCost",
+          "Clicks",
+          "Displays",
+          "Visits"
+        ]
+      },
+      "Rows": {
+        "type": "array",
+        "items": [
+          {
+            "type": "object",
+            "properties": {
+              "Day": {
+                "type": "string"
+              },
+              "CampaignId": {
+                "type": "string"
+              },
+              "Campaign": {
+                "type": "string"
+              },
+              "Currency": {
+                "type": "string"
+              },
+              "AdvertiserCost": {
+                "type": "string"
+              },
+              "Clicks": {
+                "type": "string"
+              },
+              "Displays": {
+                "type": "string"
+              },
+              "Visits": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "Day",
+              "CampaignId",
+              "Campaign",
+              "Currency",
+              "AdvertiserCost",
+              "Clicks",
+              "Displays",
+              "Visits"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "Day": {
+                "type": "string"
+              },
+              "CampaignId": {
+                "type": "string"
+              },
+              "Campaign": {
+                "type": "string"
+              },
+              "Currency": {
+                "type": "string"
+              },
+              "AdvertiserCost": {
+                "type": "string"
+              },
+              "Clicks": {
+                "type": "string"
+              },
+              "Displays": {
+                "type": "string"
+              },
+              "Visits": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "Day",
+              "CampaignId",
+              "Campaign",
+              "Currency",
+              "AdvertiserCost",
+              "Clicks",
+              "Displays",
+              "Visits"
+            ]
+          }
+        ]
+      }
+    }
+  }

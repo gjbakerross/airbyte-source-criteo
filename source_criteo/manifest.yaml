@@ -1,0 +1,106 @@
+version: "0.29.0"
+
+definitions:
+  selector:
+    type: RecordSelector
+    extractor:
+      type: DpathExtractor
+      field_path: []
+  datetime_cursor:
+    type: "DatetimeBasedCursor"
+    start_datetime:
+      datetime: "{{ format_datetime(config['start_date'], '%Y-%m-%d %H:%M:%S.%f+00:00') }}"
+      datetime_format: "%Y-%m-%d %H:%M:%S.%f+00:00"
+    end_datetime:
+      datetime: "{{ now_utc() }}"
+      datetime_format: "%Y-%m-%d %H:%M:%S.%f+00:00"
+    step: "PT1S"
+    datetime_format: "%Y-%m-%d %H:%M:%S.%f+00:00"
+    cursor_granularity: "PT1S"
+    cursor_field: "date"
+    start_time_option:
+      type: "RequestOption"
+      field_name: "startDate"
+      inject_into: "body_json"
+    end_time_option:
+      type: "RequestOption"
+      field_name: "endDate"
+      inject_into: "body_json"
+  requester:
+    type: HttpRequester
+    url_base: "https://api.criteo.com/2022-10/statistics/"
+    http_method: "POST"
+    authenticator:
+      type: "OAuthAuthenticator"
+      token_refresh_endpoint: "https://api.criteo.com/oauth2/token"
+      client_id: "{{ config['api_key'] }}"
+      client_secret: "{{ config['client_secret'] }}"
+      grant_type: "client_credentials"
+    request_body_json:
+      dimensions: "{{config['dimensions']}}"
+      metrics: "{{config['metrics']}}"
+      currency: "{{config['currency']}}"
+      format: "JSON"
+      advertiserIds: "'{{config['advertiser_id']}}'"
+      timezone: "UTC"
+  retriever:
+    type: SimpleRetriever
+    record_selector:
+      $ref: "#/definitions/selector"
+    paginator:
+      type: NoPagination
+    requester:
+      $ref: "#/definitions/requester"
+  base_stream:
+    type: DeclarativeStream
+    retriever:
+      $ref: "#/definitions/retriever"
+    incremental_sync:
+      $ref: "#/definitions/datetime_cursor"
+  report_stream:
+    $ref: "#/definitions/base_stream"
+    name: "report"
+    primary_key: ["date", "campaign_id"]
+    $parameters:
+      path: "/report"
+
+streams:
+  - "#/definitions/report_stream"
+
+check:
+  type: CheckStream
+  stream_names:
+    - "report"
+
+spec:
+  type: Spec
+  documentation_url: https://docs.airbyte.com/integrations/sources/criteo
+  connection_specification:
+    title: Criteo Spec
+    type: object
+    required:
+      - api_key
+      - client_secret
+    additionalProperties: true
+    properties:
+      # 'TODO: This schema defines the configuration required for the source. This usually involves metadata such as database and/or authentication information.':
+      api_key:
+        type: string
+        description: OAuth Client ID
+        airbyte_secret: true
+      client_secret:
+        type: string
+        description: OAuth Client Secret
+        airbyte_secret: true
+      dimensions:
+        type: array
+      metrics:
+        type: array
+      currency:
+        type: string
+      advertiser_id:
+        type: string
+      start_date:
+        type: string
+
+      

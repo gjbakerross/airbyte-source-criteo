@@ -1,0 +1,22 @@
+data:
+  allowedHosts:
+    hosts:
+      - TODO # Please change to the hostname of the source.
+  registries:
+    oss:
+      enabled: false
+  connectorSubtype: api
+  connectorType: source
+  definitionId: 0f6b5b18-ddaf-4454-9b58-177c35f189c0
+  dockerImageTag: 0.1.0
+  dockerRepository: airbyte/source-criteo
+  githubIssueLabel: source-criteo
+  icon: criteo.svg
+  license: MIT
+  name: Criteo
+  releaseDate: TODO
+  releaseStage: alpha
+  documentationUrl: https://docs.airbyte.com/integrations/sources/criteo
+  tags:
+    - language:lowcode
+metadataSpecVersion: "1.0"
