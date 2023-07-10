@@ -94,8 +94,16 @@ spec:
         airbyte_secret: true
       dimensions:
         type: array
+        examples:
+          -  [ Day,Campaign]
+        items:
+          type: string
       metrics:
         type: array
+        examples:
+          -  [AdvertiserCost,Clicks,Displays,Visits]
+        items:
+          type: string
       currency:
         type: string
       advertiser_id:
