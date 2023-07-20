@@ -14,10 +14,10 @@
         "source_defined_cursor": true,
         "source_defined_primary_key": [
           [
-            "date"
+            "Day"
           ],
           [
-            "campaign_id"
+            "CampaignId"
           ]
         ],
         "supported_sync_modes": [

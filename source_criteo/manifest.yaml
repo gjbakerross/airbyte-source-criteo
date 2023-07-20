@@ -15,9 +15,9 @@ definitions:
       datetime: "{{ now_utc() }}"
       datetime_format: "%Y-%m-%d %H:%M:%S.%f+00:00"
     step: "PT1S"
-    datetime_format: "%Y-%m-%d %H:%M:%S.%f+00:00"
+    datetime_format: "%Y-%m-%d"
     cursor_granularity: "PT1S"
-    cursor_field: "date"
+    cursor_field: "Day"
     start_time_option:
       type: "RequestOption"
       field_name: "startDate"
@@ -60,7 +60,7 @@ definitions:
   report_stream:
     $ref: "#/definitions/base_stream"
     name: "report"
-    primary_key: ["date", "campaign_id"]
+    primary_key: ["Day", "CampaignId"]
     $parameters:
       path: "/report"
 
