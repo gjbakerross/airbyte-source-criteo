@@ -1,34 +1,31 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "array",
   "additionalProperties": true,
-    "items": {
-      "type": "object",
-      "properties": {
-        "Day": {
-          "type": "string"
-        },
-        "CampaignId": {
-          "type": "string"
-        },
-        "Campaign": {
-          "type": "string"
-        },
-        "Currency": {
-          "type": "string"
-        },
-        "AdvertiserCost": {
-          "type": "string"
-        },
-        "Clicks": {
-          "type": "string"
-        },
-        "Displays": {
-          "type": "string"
-        },
-        "Visits": {
-          "type": "string"
-        }
-      }
+  "type": "object",
+  "properties": {
+    "Day": {
+      "type": "string"
+    },
+    "CampaignId": {
+      "type": "string"
+    },
+    "Campaign": {
+      "type": "string"
+    },
+    "Currency": {
+      "type": "string"
+    },
+    "AdvertiserCost": {
+      "type": "string"
+    },
+    "Clicks": {
+      "type": "string"
+    },
+    "Displays": {
+      "type": "string"
+    },
+    "Visits": {
+      "type": "string"
     }
+  }
 }
