@@ -5,7 +5,7 @@ definitions:
     type: RecordSelector
     extractor:
       type: DpathExtractor
-      field_path: []
+      field_path: ["Rows"]
   datetime_cursor:
     type: "DatetimeBasedCursor"
     start_datetime:
